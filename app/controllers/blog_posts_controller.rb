@@ -24,6 +24,28 @@ class BlogPostsController < ApplicationController
         end
     end
 
+    def edit
+        @post = BlogPost.find(params[:id])
+    end
+
+    def update
+        @post = BlogPost.find(params[:id])
+        if @post.update(blog_post_params)
+            redirect_to root_path
+        else
+            render :edit, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @post = BlogPost.find(params[:id])
+        if @post.destroy
+            redirect_to root_path
+        else
+            render :edit
+        end
+    end
+
     private
 
     def blog_post_params
