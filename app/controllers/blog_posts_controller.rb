@@ -20,7 +20,7 @@ class BlogPostsController < ApplicationController
     def create
         @post = BlogPost.new(blog_post_params)
         if @post.save
-            redirect_to root_path
+            redirect_to :index
         else
             render :new, status: :unprocessable_entity
         end
